@@ -15,6 +15,8 @@ class BWA {
             // add all data to array
         })
     }
+
+    
     stop() {
         // unsubscribe
     }

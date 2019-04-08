@@ -1,6 +1,7 @@
 import { Random } from "./Devices/Random.js"
 import { BWA } from "./BWA"
 import { HighSMR } from "./Feedback/HighSMR"
+import {Howl, Howler} from 'howler';
 
 class SessionOrchestrator {
     constructor() {
@@ -11,6 +12,9 @@ class SessionOrchestrator {
 
     begin() {
         console.log('Starting!')
+
+        var testSound = new Howl({src:['puppy-barking.mp3']});
+        testSound.play();
 
         // first create stream
         const stream = new Random()
@@ -27,15 +31,12 @@ class SessionOrchestrator {
                 this.average = results
 
                 // third start FM
-                const fm = new HighSMR({
-                    stream: stream
-                })
 
-                fm.begin()
+                //fm.begin()
 
                 // timeout 5 sek
                 setTimeout(() => {
-                    fm.stop()
+                    //fm.stop()
                 }, 5000)
 
             })
