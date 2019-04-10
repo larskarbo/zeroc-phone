@@ -1,4 +1,5 @@
 import { Random } from "./Devices/Random.js"
+import { Muse } from "./Devices/Muse.js"
 import { BWA } from "./BWA"
 import { HighSMR } from "./Feedback/HighSMR"
 import {Howl, Howler} from 'howler';
@@ -15,7 +16,7 @@ class SessionOrchestrator {
         rainSound.play();
     }
 
-    begin() {
+    async begin() {
         console.log('Starting!')
 
         //var testSound = new Howl({src:['puppy-barking.mp3']});
@@ -24,11 +25,18 @@ class SessionOrchestrator {
         
         
         // first create stream
-        const stream = new Random()
-        
+        const source = new Muse({
+            
+            useAjaxBridge: true
+        })
+        // const source = new Random()
+
+        await source.initialize();
+
+
         // second calc bwa
         const bwa = new BWA({
-            stream: stream
+            stream: source.stream
         })
         //hekter på console.log(masse data)
         //bwa.record()
@@ -45,6 +53,9 @@ class SessionOrchestrator {
                 this.average = results
 
                 // third start FM
+                const fm = new HighSMR({
+                    stream: source.stream
+                })
 
                 fm.begin()
 
