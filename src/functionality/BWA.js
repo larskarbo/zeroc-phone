@@ -9,9 +9,10 @@ class BWA {
         this.stream = props.stream
     }
 
-    record() {
-        this.stream.observable.subscribe((data) => {
-            console.log(data)
+    record = () => {
+        console.log('this.stream: ', this.stream);
+        this.stream.subscribe((data) => {
+            // console.log(data)
             // add all data to array
         })
     }

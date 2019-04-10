@@ -3,11 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bleat": "^0.1.8",
+    "muse-js": "^3.1.0",
+    "noble": "^1.9.1",
+    "node-lsl": "^0.1.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.4.0",
+    "text-encoding": "^0.7.0",
+    "usb": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

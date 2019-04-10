@@ -1,4 +1,5 @@
 import { Random } from "./Devices/Random.js"
+import { Muse } from "./Devices/Muse.js"
 import { BWA } from "./BWA"
 import { HighSMR } from "./Feedback/HighSMR"
 
@@ -9,15 +10,22 @@ class SessionOrchestrator {
         this.average = null;
     }
 
-    begin() {
+    async begin() {
         console.log('Starting!')
 
         // first create stream
-        const stream = new Random()
+        const source = new Muse({
+            
+            useAjaxBridge: true
+        })
+        // const source = new Random()
+
+        await source.initialize();
+
 
         // second calc bwa
         const bwa = new BWA({
-            stream: stream
+            stream: source.stream
         })
 
         bwa.record()
@@ -28,7 +36,7 @@ class SessionOrchestrator {
 
                 // third start FM
                 const fm = new HighSMR({
-                    stream: stream
+                    stream: source.stream
                 })
 
                 fm.begin()

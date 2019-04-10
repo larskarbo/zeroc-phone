@@ -11,6 +11,7 @@ import { SessionOrchestrator } from "./functionality/SessionOrchestrator"
 class App extends Component {
   componentDidMount() {
     this.sa = new SessionOrchestrator();
+    this.sa.begin();
   }
 
   render() {
@@ -22,7 +23,6 @@ class App extends Component {
           </p>
           <button
             onClick={() => {
-              this.sa.begin();
             }}
           >Start!</button>
         </header>

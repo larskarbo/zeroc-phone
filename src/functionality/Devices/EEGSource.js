@@ -4,24 +4,34 @@
  *
  */
 
-import { Observable, of, pipe } from 'rxjs';
+import { Observable, of, pipe, Subject } from 'rxjs';
 
 
 
 class EEGSource {
 
     constructor() {
-        this.observable = Observable.create(function (observer) {
-            setInterval(() => {
-                observer.next({
-                    alfa: 1,
-                    beta: 1,
-                    smr: 2
-                });
-            }, 100);
-        });
+        
+    }
+    
+    createStream() {
+        return new Subject();
     }
 
+    connectBridge() {
+        const ws = new WebSocket('ws://localhost:8080');
+
+        ws.addEventListener('open', function (event) {
+            ws.send('Hello Server!');
+        });
+
+        ws.addEventListener("message", (event) => {
+            var data = event.data;
+            // console.log('data: ', );
+            this.stream.next(JSON.parse(data))
+            // handle data
+        });
+    }
 
 }
 
