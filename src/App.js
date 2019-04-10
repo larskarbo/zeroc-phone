@@ -19,7 +19,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>
-            Heisan!💪💪💪
+            <h1>Drowzee</h1>
+            Yo!💪💪💪
           </p>
           <button
             onClick={() => {

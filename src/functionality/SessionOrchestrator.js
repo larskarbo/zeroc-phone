@@ -2,6 +2,7 @@ import { Random } from "./Devices/Random.js"
 import { Muse } from "./Devices/Muse.js"
 import { BWA } from "./BWA"
 import { HighSMR } from "./Feedback/HighSMR"
+import {Howl, Howler} from 'howler';
 
 class SessionOrchestrator {
     constructor() {
@@ -12,6 +13,9 @@ class SessionOrchestrator {
 
     async begin() {
         console.log('Starting!')
+
+        var testSound = new Howl({src:['puppy-barking.mp3']});
+        testSound.play();
 
         // first create stream
         const source = new Muse({
@@ -39,11 +43,11 @@ class SessionOrchestrator {
                     stream: source.stream
                 })
 
-                fm.begin()
+                //fm.begin()
 
                 // timeout 5 sek
                 setTimeout(() => {
-                    fm.stop()
+                    //fm.stop()
                 }, 5000)
 
             })

@@ -5,13 +5,23 @@
  */
 
 import { Observable, of, pipe, Subject } from 'rxjs';
+import { randomBytes } from 'crypto';
 
-
+function randomNum(min,max){
+    return Math.random()*(max-min+1)+min;
+}
 
 class EEGSource {
 
+    
     constructor() {
-        
+        // setInterval(() => {
+        //     observer.next({
+        //         alfa: randomNum(0.5, 2),
+        //         beta: randomNum(0.5, 2),
+        //         smr: randomNum(0.5, 2)
+        //     });
+        // }, 1000 / 60);
     }
     
     createStream() {
