@@ -1,6 +1,8 @@
 # Welcome to Drowzee Platform 7
 
-An app using EEG data to create auditory neurofeedback in real time.
+> App using real time EEG data to create auditory neurofeedback.
+
+![alt text](public/overview.png "Logo Title Text 1")
 
 The project can take in anarbitary EEG device (defined in `src/functionality/devices/)` and give feedback based on an arbitary algorithm. Different algorithms can be implemented as different *feedback machines* (FM) in `src/functionality/Feedback`.
 
