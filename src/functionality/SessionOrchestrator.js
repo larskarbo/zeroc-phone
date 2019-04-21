@@ -2,7 +2,6 @@
 import {devices} from "./devices"
 import { BWA } from "./BWA"
 import { HighSMR } from "./Feedback/HighSMR"
-import {Howl, Howler} from 'howler';
 
 class SessionOrchestrator {
     constructor(props) {
@@ -13,18 +12,8 @@ class SessionOrchestrator {
         this.average = null;
     }
 
-    playRain() {
-        var rainSound = new Howl({src:['rain.mp3']});
-        rainSound.play();
-    }
-
     async begin() {
         console.log('Starting!')
-
-        //var testSound = new Howl({src:['puppy-barking.mp3']});
-        //testSound.play();
-        this.playRain();
-        
         
         // first create stream
         const Device = devices[this.deviceType]
@@ -43,7 +32,7 @@ class SessionOrchestrator {
         //bwa.record()
 
         const fm = new HighSMR({
-            stream: stream
+            stream: source.stream
         })
 
         fm.begin();
