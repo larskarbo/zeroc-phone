@@ -14,18 +14,23 @@ function randomNum(min,max){
 class EEGSource {
 
     
-    constructor() {
-        // setInterval(() => {
-        //     observer.next({
-        //         alfa: randomNum(0.5, 2),
-        //         beta: randomNum(0.5, 2),
-        //         smr: randomNum(0.5, 2)
-        //     });
-        // }, 1000 / 60);
-    }
+    // constructor() {
+    // }
     
     createStream() {
         return new Subject();
+    }
+
+
+    async initialize() {
+        this.stream = this.createStream();
+
+        if (!this.useAjaxBridge) {
+            const device = await this.connect(this.handleStrem)
+            console.log('device: ', device);
+        } else {
+            await this.connectBridge(this.handleStrem)
+        }
     }
 
     connectBridge() {
