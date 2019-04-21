@@ -2,38 +2,40 @@
 
 import { Observable, of, pipe } from 'rxjs';
 import { EEGSource } from "./EEGSource.js"
-import { MuseClient } from 'muse-js';
+// import { MuseClient } from './node_modules/muse-js';
 
-class Muse extends EEGSource {
+class OpenBCI extends EEGSource {
 
     constructor(props) {
         super(props);
         this.useAjaxBridge = props.useAjaxBridge
     }
 
-    connect(callback) {
-        navigator.bluetooth.requestDevice({
+    async connect() {
+        console.log('📚 connecting')
+        const device = await navigator.bluetooth.requestDevice({
             filters: [
-                { namePrefix: 'MUSE' },
-                { namePrefix: 'Muse' },
-                { namePrefix: 'OpenBCI' }
+                { namePrefix: 'OpenBCI' },
+                { namePrefix: 'Ganglion' },
             ]
         })
-            .then(device => {
-                console.log('yeah 🤩', device)
-                console.log('device: ', device);
-                callback()
-            })
-            .catch(error => { console.log(error); });
+        .then(device => {
+            console.log('device: ', device);
+            return device
+        })
+        .catch(error => { console.log(error); });
+
+        // this.stream.next(JSON.parse(data))
     }
 
     async initialize() {
         this.stream = this.createStream();
 
-        if (this.useAjaxBridge) {
-            this.connect(this.handleStrem)
+        if (!this.useAjaxBridge) {
+            const device = await this.connect(this.handleStrem)
+            console.log('device: ', device);
         } else {
-            this.connectBridge(this.handleStrem)
+            await this.connectBridge(this.handleStrem)
         }
     }
 
@@ -43,4 +45,4 @@ class Muse extends EEGSource {
     }
 }
 
-export { Muse }
+export { OpenBCI }

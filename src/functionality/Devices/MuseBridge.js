@@ -4,7 +4,7 @@ import { Observable, of, pipe } from 'rxjs';
 import { EEGSource } from "./EEGSource.js"
 import { MuseClient } from 'muse-js';
 
-class Muse extends EEGSource {
+class MuseBridge extends EEGSource {
 
     constructor() {
         super();
@@ -22,7 +22,6 @@ class Muse extends EEGSource {
 
     async initialize() {
         console.log('initing')
-
 
         const ws = new WebSocket('ws://localhost:8080');
 
@@ -64,4 +63,4 @@ class Muse extends EEGSource {
     }
 }
 
-export { Muse }
+export { MuseBridge }

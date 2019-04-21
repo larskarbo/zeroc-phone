@@ -1,31 +1,33 @@
-import { Random } from "./Devices/Random.js"
-import { Muse } from "./Devices/Muse.js"
+
+import {devices} from "./devices"
 import { BWA } from "./BWA"
 import { HighSMR } from "./Feedback/HighSMR"
 import {Howl, Howler} from 'howler';
 
 class SessionOrchestrator {
-    constructor() {
+    constructor(props) {
+        console.log('props: ', props);
         console.log('constructing')
 
+        this.deviceType = props.device
         this.average = null;
     }
 
     async begin() {
         console.log('Starting!')
 
+
         var testSound = new Howl({src:['puppy-barking.mp3']});
-        testSound.play();
+        // testSound.play();
 
         // first create stream
-        const source = new Muse({
-            
-            useAjaxBridge: true
+        const Device = devices[this.deviceType]
+        const source = new Device({
+            useAjaxBridge: false
         })
-        // const source = new Random()
 
         await source.initialize();
-
+        console.log('finished initializing!')
 
         // second calc bwa
         const bwa = new BWA({

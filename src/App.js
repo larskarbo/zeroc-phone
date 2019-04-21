@@ -8,9 +8,13 @@ import { SessionOrchestrator } from "./functionality/SessionOrchestrator"
  * 
  */
 
+const devices = ["OpenBCI", "Muse", "MuseBridge",  "OpenBCIBridge", "Random"]
+
 class App extends Component {
-  componentDidMount() {
-    this.sa = new SessionOrchestrator();
+  begin() {
+    this.sa = new SessionOrchestrator({
+      device: this.s.value
+    });
     this.sa.begin();
   }
 
@@ -22,8 +26,14 @@ class App extends Component {
             <h1>Drowzee</h1>
             Yo!💪💪💪
           </p>
+          <select ref={s => this.s = s}>
+            {devices.map(d => (
+              <option value={d}>{d}</option>
+            ))}
+          </select>
           <button
             onClick={() => {
+              this.begin()
             }}
           >Start!</button>
         </header>
