@@ -17,6 +17,15 @@ This project is created with fast pace in mind. Cross-platform is key, and funct
 Link to a mind-map sketching out our system architecture: [📕 Product map](https://www.draw.io/?state=%7B%22ids%22:%5B%221kcxykYMVjBlMK2Faz9EngK3_xb9We_w7%22%5D,%22action%22:%22open%22,%22userId%22:%22103603540184261131413%22%7D#G1kcxykYMVjBlMK2Faz9EngK3_xb9We_w7)
 
 
+## Step one basic structur
+
+For the first iteration we will build this structure
+
+![](public/img/2019-04-21-14-00-03.png)
+
+----
+
+
 To build the react project, navigate to the project folder in your terminal
 
 First install dependencies with yarn
